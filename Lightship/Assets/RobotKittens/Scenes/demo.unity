@@ -1215,10 +1215,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5821591b591014c18875ea3277ca2221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomMesh: {fileID: -8670151273213183110, guid: 716f8de3a82c38f459ae95a64406f124, type: 3}
-  placedObjects:
-  - {fileID: 2320915681646039231, guid: f3686ee2619e0ac4f83e4bc56102d8d6, type: 3}
-  meshTransparent: {fileID: 2100000, guid: 4d00d51d9ad64916abef2551d151e0ab, type: 2}
+  locations:
+  - nameLocation: 
+    keyLocation: 
+    meshLocation: {fileID: 0}
+    placedObjects: []
+  - nameLocation: Jeany's desk
+    keyLocation: 'ChUIxJ2k7dbdr6VHEIWvl9Pv3oXCxwEY2ZqPkI/W+wIqJgoUCLiO2oz1g8unIxCjybXD3bGCqm0SCQoAEgUlAACAPx0AAIA/ '
+    meshLocation: {fileID: -8670151273213183110, guid: 716f8de3a82c38f459ae95a64406f124, type: 3}
+    placedObjects:
+    - {fileID: 2320915681646039231, guid: f3686ee2619e0ac4f83e4bc56102d8d6, type: 3}
+  - nameLocation: Oosterwold
+    keyLocation: ChQI9OHq5Yql66UTEJKto/DTw+HgGRjCm72TwNv7AionChUI/IbPprXYlKL7ARC6u6bd/bycuSQSCQoAEgUlAACAPx0AAIA/
+    meshLocation: {fileID: -8670151273213183110, guid: 06fbccca7a8138343a6070ed60fd1ec0, type: 3}
+    placedObjects:
+    - {fileID: 5827588372995387518, guid: b84d1a5ef31d5044fb7fb92e87c0735a, type: 3}
+  meshTransparent: {fileID: 2100000, guid: 752f89ddb78964ed1ba643e99121c8ff, type: 2}
 --- !u!114 &844912541
 MonoBehaviour:
   m_ObjectHideFlags: 0

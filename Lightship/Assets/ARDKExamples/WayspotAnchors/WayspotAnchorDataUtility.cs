@@ -14,8 +14,8 @@ namespace Niantic.ARDKExamples.WayspotAnchors
 {
   public class WayspotAnchorDataUtility : MonoBehaviour
   {
-    public Mesh roomMesh;
-    public List<GameObject> placedObjects;
+    [Tooltip("Skip the first one in the list (0), because UI is fucked in Unity")]
+    public List<MapData> locations;
     public Material meshTransparent;
 
     private const string DataKey = "wayspot_anchor_payloads";
@@ -63,28 +63,35 @@ namespace Niantic.ARDKExamples.WayspotAnchors
 
     public WayspotAnchorPayload[] LoadPayloads()
     {
-            var payloads = new List<WayspotAnchorPayload>();
-            payloads.Add(WayspotAnchorPayload.Deserialize("ChUIxJ2k7dbdr6VHEIWvl9Pv3oXCxwEY2ZqPkI/W+wIqJgoUCLiO2oz1g8unIxCjybXD3bGCqm0SCQoAEgUlAACAPx0AAIA/"));
-
-            GameObject roomObject = new GameObject();
-            WayspotAnchorTracker tracker = roomObject.AddComponent(typeof(WayspotAnchorTracker)) as WayspotAnchorTracker;
-            MeshRenderer meshRenderer = roomObject.AddComponent(typeof(MeshRenderer)) as MeshRenderer;
-            MeshFilter meshFilter = roomObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
-            meshFilter.mesh = roomMesh;
-            meshFilter.sharedMesh = roomMesh;
-            meshRenderer.material = meshTransparent;
-            Debug.Log("Mesh set : " + roomMesh.name);
-
-            foreach(GameObject placedObjectData in placedObjects)
+            for (int i = 1; i < locations.Count; i++) //Skip 0 because Unity UI is fucked
             {
-                GameObject placedObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                WayspotAnchorTracker placedTracker = placedObject.AddComponent(typeof(WayspotAnchorTracker)) as WayspotAnchorTracker;
-                placedObject.transform.position = placedObjectData.transform.position;
-                placedObject.transform.rotation = placedObjectData.transform.rotation;
-                placedObject.transform.localScale = placedObjectData.transform.localScale;
-            }
+                MapData location = locations[i];
+                var payloads = new List<WayspotAnchorPayload>();
+                payloads.Add(WayspotAnchorPayload.Deserialize(location.keyLocation));
 
-            return payloads.ToArray();
+                Debug.Log("location : " + location.nameLocation);
+
+                GameObject roomObject = new GameObject();
+                WayspotAnchorTracker tracker = roomObject.AddComponent(typeof(WayspotAnchorTracker)) as WayspotAnchorTracker;
+                MeshRenderer meshRenderer = roomObject.AddComponent(typeof(MeshRenderer)) as MeshRenderer;
+                MeshFilter meshFilter = roomObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
+                meshFilter.mesh = location.meshLocation;
+                meshFilter.sharedMesh = location.meshLocation;
+                meshRenderer.material = meshTransparent;
+                Debug.Log("Mesh set : " + location.meshLocation.name);
+
+                foreach (GameObject placedObjectData in location.placedObjects)
+                {
+                    GameObject placedObject = Instantiate(placedObjectData);
+                    WayspotAnchorTracker placedTracker = placedObject.AddComponent(typeof(WayspotAnchorTracker)) as WayspotAnchorTracker;
+                }
+
+                return payloads.ToArray();
+
+            }
+            return null;
+
+
             /*
           if (PlayerPrefs.HasKey(DataKey))
           {
@@ -121,12 +128,21 @@ namespace Niantic.ARDKExamples.WayspotAnchors
             */
         }
 
-    public static void ClearLocalPayloads()
+        public static void ClearLocalPayloads()
     {
       if (PlayerPrefs.HasKey(DataKey))
       {
         PlayerPrefs.DeleteKey(DataKey);
       }
+    }
+
+    [Serializable]
+    public class MapData
+    {
+            public string nameLocation;
+            public string keyLocation;
+            public Mesh meshLocation;
+            public List<GameObject> placedObjects;
     }
 
     [Serializable]
