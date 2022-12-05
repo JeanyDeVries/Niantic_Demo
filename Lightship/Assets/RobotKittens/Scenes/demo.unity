@@ -1225,11 +1225,11 @@ MonoBehaviour:
     meshLocation: {fileID: -8670151273213183110, guid: 716f8de3a82c38f459ae95a64406f124, type: 3}
     placedObjects:
     - {fileID: 2320915681646039231, guid: f3686ee2619e0ac4f83e4bc56102d8d6, type: 3}
-  - nameLocation: Oosterwold
-    keyLocation: ChQI9OHq5Yql66UTEJKto/DTw+HgGRjCm72TwNv7AionChUI/IbPprXYlKL7ARC6u6bd/bycuSQSCQoAEgUlAACAPx0AAIA/
-    meshLocation: {fileID: -8670151273213183110, guid: 06fbccca7a8138343a6070ed60fd1ec0, type: 3}
+  - nameLocation: RK_Building_Fromt
+    keyLocation: ChUIgYK+kfuJ9aOhARClv8GM24384xkYtpeuzZri+wIqKAoWCN+Q7PPvm7Wn+gEQpbOawqKrx5frARIJCgASBSUAAIA/HQAAgD8=
+    meshLocation: {fileID: -8670151273213183110, guid: 223d89e2299d62144891585aba51ea6e, type: 3}
     placedObjects:
-    - {fileID: 5827588372995387518, guid: b84d1a5ef31d5044fb7fb92e87c0735a, type: 3}
+    - {fileID: 8021532721699239204, guid: 53f8df29518dc0a4a92e40346b5ba91c, type: 3}
   meshTransparent: {fileID: 2100000, guid: 752f89ddb78964ed1ba643e99121c8ff, type: 2}
 --- !u!114 &844912541
 MonoBehaviour:
